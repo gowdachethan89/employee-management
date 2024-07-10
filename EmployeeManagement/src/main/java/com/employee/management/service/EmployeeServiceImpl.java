@@ -31,6 +31,25 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    public Employee updateEmployee(Employee employeeDetails, int id) throws Exception {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        if (employeeOptional.isPresent()){
+            Employee employee = employeeOptional.get();
+            // Update the fields of the existing employee with the new details
+            employee.setFirstName(employeeDetails.getFirstName());
+            employee.setLastName(employeeDetails.getLastName());
+            employee.setEmail(employeeDetails.getEmail());
+            employee.setPhone(employeeDetails.getPhone());
+            employee.setAddress(employeeDetails.getAddress());
+            employee.setDepartment(employeeDetails.getDepartment());
+            employee.setPosition(employeeDetails.getPosition());
+            employee.setSalary(employeeDetails.getSalary());
+            return employeeRepository.save(employee);
+        }
+        throw new Exception("Employee Not Found");
+    }
+
+    @Override
     public void deleteEmployee(int id) {
         employeeRepository.deleteById(id);
     }
