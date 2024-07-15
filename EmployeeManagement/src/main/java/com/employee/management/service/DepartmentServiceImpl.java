@@ -38,4 +38,17 @@ public class DepartmentServiceImpl implements DepartmentService{
     public Optional<Employee> getDepartmentByName(String name) {
         return departmentRepository.findByDepartmentName(name);
     }
+
+    @Override
+    public Department updateDepartment(Department departmentDetails, int id) throws Exception {
+        Optional<Department> departmentById = departmentRepository.findById(id);
+        if (departmentById.isPresent()){
+            Department department = departmentById.get();
+            department.setDepartmentName(departmentDetails.getDepartmentName());
+            department.setEmployees(departmentDetails.getEmployees());
+            department.setManager(departmentDetails.getManager());
+            return department;
+        }
+        throw new Exception("Department Not Found");
+    }
 }

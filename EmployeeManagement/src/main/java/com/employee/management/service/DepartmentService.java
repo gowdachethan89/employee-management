@@ -13,4 +13,5 @@ public interface DepartmentService {
     void deleteDepartment(int id);
 
     Optional<Employee> getDepartmentByName(String name);
+    Department updateDepartment(Department department, int id) throws Exception;
 }
