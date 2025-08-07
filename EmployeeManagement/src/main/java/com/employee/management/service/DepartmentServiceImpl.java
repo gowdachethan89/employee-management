@@ -13,9 +13,9 @@ import java.util.Optional;
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
 
-	@Autowired
+    @Autowired
     DepartmentRepository departmentRepository;
-
+    
     @Override
     public Department saveDepartment(Department department) {
         return departmentRepository.save(department);
