@@ -3,6 +3,8 @@ package com.employee.management.service;
 import com.employee.management.entity.Department;
 import com.employee.management.entity.Employee;
 import com.employee.management.repository.DepartmentRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,12 +13,9 @@ import java.util.Optional;
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
 
-    private DepartmentRepository departmentRepository;
-    
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
-    	this.departmentRepository = departmentRepository;
-    }
-    
+	@Autowired
+    DepartmentRepository departmentRepository;
+
     @Override
     public Department saveDepartment(Department department) {
         return departmentRepository.save(department);
