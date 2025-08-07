@@ -3,7 +3,6 @@ package com.employee.management.service;
 import com.employee.management.entity.Department;
 import com.employee.management.entity.Employee;
 import com.employee.management.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +11,13 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-    @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
+    
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
 
-    @Override
+	@Override
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
